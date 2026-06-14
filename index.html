@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Zoyeux anniversaire Linnéa ❤️</title>
+  <style>
+    :root{
+      --pink:#ff4d7d;
+      --rose:#ff8fab;
+      --dark:#3b1021;
+      --cream:#fff7fb;
+      --glass:rgba(255,255,255,.22);
+      --glass2:rgba(255,255,255,.34);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color:#fff;
+      background:
+        radial-gradient(circle at 20% 10%, #fff 0 0.5%, transparent 9%),
+        radial-gradient(circle at 90% 15%, #ffd6e3 0 0.7%, transparent 10%),
+        linear-gradient(140deg,#ff6f91 0%,#ff9671 35%,#ffc2d1 70%,#ff5d8f 100%);
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(80,0,35,.25));
+      pointer-events:none;
+      z-index:0;
+    }
+    .wrap{position:relative;z-index:2;max-width:760px;margin:0 auto;padding:18px}
+    section{
+      min-height:100vh;
+      padding:38px 0 28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+    }
+    .card{
+      width:100%;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,.35);
+      box-shadow:0 18px 60px rgba(110,0,45,.22);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius:32px;
+      padding:26px 20px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:after{
+      content:"";
+      position:absolute;
+      width:160px;height:160px;border-radius:50%;
+      right:-70px;top:-70px;
+      background:rgba(255,255,255,.18);
+      pointer-events:none;
+    }
+    h1{font-size:clamp(34px,10vw,64px);line-height:1.02;margin:10px 0 16px;text-shadow:0 8px 28px rgba(80,0,25,.25)}
+    h2{font-size:clamp(26px,7vw,42px);margin:0 0 18px}
+    h3{font-size:22px;margin:18px 0 6px}
+    p{font-size:18px;line-height:1.55;margin:10px auto;max-width:620px}
+    .small{font-size:15px;opacity:.92}
+    .big{font-size:22px;font-weight:800}
+    .btn{
+      border:0;
+      border-radius:999px;
+      padding:15px 22px;
+      margin:8px;
+      font-size:17px;
+      font-weight:800;
+      color:var(--dark);
+      background:#fff;
+      box-shadow:0 10px 28px rgba(95,0,50,.22);
+      cursor:pointer;
+      transition:.18s transform, .18s box-shadow, .18s filter;
+      touch-action:manipulation;
+    }
+    .btn:active{transform:scale(.96)}
+    .btn.primary{background:linear-gradient(135deg,#ff2d75,#ff7aa8);color:#fff}
+    .btn.dark{background:#3b1021;color:#fff}
+    .btn.ghost{background:rgba(255,255,255,.25);color:#fff;border:1px solid rgba(255,255,255,.35)}
+    .timeline{display:grid;gap:12px;margin:18px 0}
+    .moment{
+      background:rgba(255,255,255,.22);
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:22px;
+      padding:16px;
+      text-align:left;
+    }
+    .moment b{font-size:18px}
+    .quizBox{display:none}
+    .quizBox.active{display:block}
+    .answer{display:block;width:100%;max-width:520px;margin:10px auto}
+    .feedback{min-height:28px;font-weight:800}
+    .hearts{font-size:28px;letter-spacing:5px}
+    .counterGrid{display:grid;grid-template-columns:1fr;gap:12px;margin:18px 0}
+    .counter{
+      background:rgba(255,255,255,.23);
+      border-radius:22px;
+      padding:15px;
+      border:1px solid rgba(255,255,255,.25)
+    }
+    .counter .num{font-size:31px;font-weight:900}
+    label{
+      display:block;
+      text-align:left;
+      background:rgba(255,255,255,.22);
+      margin:10px 0;
+      padding:14px 16px;
+      border-radius:18px;
+      font-size:17px;
+    }
+    input[type=checkbox]{transform:scale(1.25);margin-right:10px}
+    #noBtn{position:relative;z-index:8}
+    #secretLetter{display:none;white-space:normal;text-align:left}
+    #secretLetter p{max-width:100%;font-size:18px}
+    .giftBox{
+      font-size:90px;
+      animation:bounce 1.5s infinite;
+      filter:drop-shadow(0 14px 20px rgba(100,0,40,.3));
+    }
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    .float{
+      position:fixed;
+      top:-60px;
+      z-index:1;
+      pointer-events:none;
+      animation:fall linear infinite;
+      opacity:.9;
+      text-shadow:0 4px 12px rgba(80,0,40,.18);
+    }
+    @keyframes fall{
+      0%{transform:translateY(-80px) rotate(0deg)}
+      100%{transform:translateY(110vh) rotate(360deg)}
+    }
+    .sparkle{
+      position:fixed;
+      inset:auto;
+      pointer-events:none;
+      z-index:20;
+      animation:pop .9s ease-out forwards;
+    }
+    @keyframes pop{
+      0%{transform:scale(.2);opacity:0}
+      35%{opacity:1}
+      100%{transform:scale(1.8) translateY(-40px);opacity:0}
+    }
+    .progress{
+      width:100%;
+      height:9px;
+      border-radius:99px;
+      background:rgba(255,255,255,.25);
+      overflow:hidden;
+      margin:16px 0 4px;
+    }
+    #bar{height:100%;width:0;background:#fff;border-radius:99px;transition:.25s}
+    .music{
+      position:fixed;right:12px;bottom:12px;z-index:30;
+      background:rgba(255,255,255,.85);
+      color:var(--dark);
+      border:0;border-radius:999px;
+      padding:12px 14px;font-weight:800;
+      box-shadow:0 10px 30px rgba(80,0,40,.25);
+    }
+    .fadeIn{animation:fade .6s ease both}
+    @keyframes fade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+    @media(min-width:680px){
+      .counterGrid{grid-template-columns:repeat(3,1fr)}
+      .card{padding:34px}
+    }
+  </style>
+</head>
+<body>
+  <button class="music" onclick="toggleMusic()">🎵 Through the dark</button>
+  <audio id="audio" loop>
+    <source src="" type="audio/mpeg">
+  </audio>
+
+  <div class="wrap">
+    <section id="intro">
+      <div class="card fadeIn">
+        <div class="hearts">❤️ 🌹 ❤️</div>
+        <h1>Zoyeux anniversaire Linnéa</h1>
+        <p class="big">21 ans auzourd'hui, mon ange ❤️</p>
+        <p>Ze t'ai préparé une mini carte informatique, parce que ze voulais te faire un truc rien qu'à toi.</p>
+        <p>Il y a des roses, des cœurs, des questions débiles, un bouton qui fait n'importe quoi, et surtout beaucoup d'amour ❤️</p>
+        <button class="btn primary" onclick="go('story')">Commencer la surprise 😍</button>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="card">
+        <h2>🌹 Notre petite histoire 🌹</h2>
+        <p>Quelques dates qui comptent beaucoup beaucoup beaucoup ❤️</p>
+        <div class="timeline">
+          <div class="moment"><b>📱 3 octobre 2022</b><br>Le premier message WhatsApp. Un petit message... et finalement une grande histoire.</div>
+          <div class="moment"><b>❤️ Mardi 3 janvier 2023</b><br>Le zur où tu es devenue officiellement ma copine. Et ze pense que c'était une très très bonne idée.</div>
+          <div class="moment"><b>🏡 Samedi 28 janvier 2023</b><br>Première nuit chez toi. Un souvenir tout doux, et le début de plein d'autres.</div>
+          <div class="moment"><b>🎂 14 juin 2026</b><br>Auzourd'hui, ton anniversaire à Cluj. Révisions, copines, restaurant, cadeau... et moi trop content d'être là.</div>
+        </div>
+        <button class="btn primary" onclick="go('counters')">Voir les compteurs ❤️</button>
+      </div>
+    </section>
+
+    <section id="counters">
+      <div class="card">
+        <h2>⏳ Les compteurs de nous deux</h2>
+        <div class="counterGrid">
+          <div class="counter"><div class="num" id="dMsg">0</div><div>zours depuis le premier message 📱</div></div>
+          <div class="counter"><div class="num" id="dCouple">0</div><div>zours ensemble ❤️</div></div>
+          <div class="counter"><div class="num" id="dNight">0</div><div>zours depuis la première nuit 🏡</div></div>
+        </div>
+        <p class="small">Et ça fait déjà beaucoup de zours où ze t'aime fort fort fort.</p>
+        <button class="btn primary" onclick="go('quiz')">Passer au quiz 😆</button>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <div class="card">
+        <h2>💘 Mini quiz d'anniversaire</h2>
+        <div class="progress"><div id="bar"></div></div>
+        <p class="small">Réponds bien pour débloquer la suite, bébé 😘</p>
+
+        <div class="quizBox active">
+          <h3>Question 1</h3>
+          <p>Quel zur on s'est envoyé notre premier message WhatsApp ?</p>
+          <button class="btn answer" onclick="good()">3 octobre 2022 📱</button>
+          <button class="btn answer" onclick="bad()">3 janvier 2023 ❤️</button>
+          <button class="btn answer" onclick="bad()">Quand ze t'ai vue dans un rêve 😆</button>
+        </div>
+
+        <div class="quizBox">
+          <h3>Question 2</h3>
+          <p>Quelle est notre date de mise en couple ?</p>
+          <button class="btn answer" onclick="bad()">1er janvier 2023, après les feux d'artifice 🎆</button>
+          <button class="btn answer" onclick="good()">Mardi 3 janvier 2023 ❤️</button>
+          <button class="btn answer" onclick="bad()">14 février, parce que cliché 😘</button>
+        </div>
+
+        <div class="quizBox">
+          <h3>Question 3</h3>
+          <p>Où ze suis croooooooop content d'être avec toi auzourd'hui ?</p>
+          <button class="btn answer" onclick="good()">À Cluj avec toi ❤️</button>
+          <button class="btn answer" onclick="bad()">Dans un Excel de comptabilité 😭</button>
+          <button class="btn answer" onclick="bad()">Perdu dans GitHub 😆</button>
+        </div>
+
+        <div class="quizBox">
+          <h3>Question 4</h3>
+          <p>Qu'est-ce qu'on fait ce soir ?</p>
+          <button class="btn answer" onclick="bad()">Réviser zuste toute la nuit 📚</button>
+          <button class="btn answer" onclick="good()">Restaurant ensemble 🍝🥂❤️</button>
+          <button class="btn answer" onclick="bad()">Réparer un iPhone XS 😭</button>
+        </div>
+
+        <div class="quizBox">
+          <h3>Question 5</h3>
+          <p>Quelle chanson mérite une petite place dans cette surprise ?</p>
+          <button class="btn answer" onclick="good()">Through the Dark — One Direction 🎵❤️</button>
+          <button class="btn answer" onclick="bad()">Le bruit du ventilateur de mon Mac 💻</button>
+          <button class="btn answer" onclick="bad()">Une alarme de révisions 📚</button>
+        </div>
+
+        <div class="quizBox">
+          <h3>Question 6</h3>
+          <p>Qui est mon ange, mon bébé, ma copine géniale ?</p>
+          <button class="btn answer" onclick="good()">Linnéa ❤️</button>
+          <button class="btn answer" onclick="good()">Linnéa encore ❤️</button>
+          <button class="btn answer" onclick="good()">Toujours Linnéa ❤️</button>
+        </div>
+
+        <div class="quizBox">
+          <h3>Question bonus</h3>
+          <p>Combien ze t'aime ?</p>
+          <button class="btn answer" onclick="good()">Fort</button>
+          <button class="btn answer" onclick="good()">Fort fort fort</button>
+          <button class="btn answer" onclick="good()">CROOOOOOOOP fort ❤️</button>
+        </div>
+
+        <p class="feedback" id="feedback"></p>
+        <button id="nextQuiz" class="btn primary" style="display:none" onclick="nextQ()">Question suivante ❤️</button>
+      </div>
+    </section>
+
+    <section id="mission">
+      <div class="card">
+        <h2>💌 Mission d'anniversaire</h2>
+        <p>Pour débloquer la suite, il faut accepter ces missions très officielles :</p>
+        <label><input type="checkbox" onchange="checkMission()"> Survivre aux révisions 📚</label>
+        <label><input type="checkbox" onchange="checkMission()"> Voir tes deux copines et profiter un peu 👭</label>
+        <label><input type="checkbox" onchange="checkMission()"> Aller au restaurant ce soir avec ton coupain 🍝</label>
+        <label><input type="checkbox" onchange="checkMission()"> Recevoir beaucoup trop de bisous 😘</label>
+        <label><input type="checkbox" onchange="checkMission()"> Être mon ange, comme d'habitude ❤️</label>
+        <p id="missionText" class="feedback"></p>
+        <button id="missionBtn" class="btn primary" style="display:none" onclick="go('gift')">Mission validée ✅</button>
+      </div>
+    </section>
+
+    <section id="gift">
+      <div class="card">
+        <h2>🎁 Le cadeau</h2>
+        <div class="giftBox">🎁</div>
+        <p>Tu veux ouvrir ton cadeau maintenant ?</p>
+        <button class="btn primary" onclick="fakeGift()">Ouvrir le cadeau 😍</button>
+        <p id="fakeGiftText" class="feedback"></p>
+        <button id="afterGift" class="btn primary" style="display:none" onclick="go('date')">Continuer ❤️</button>
+      </div>
+    </section>
+
+    <section id="date">
+      <div class="card">
+        <h2>❤️ Question importante ❤️</h2>
+        <p>Est-ce que tu veux passer cette zournée d'anniversaire avec moi, mon ange ?</p>
+        <button class="btn primary" onclick="go('letter')">OUI 😍</button>
+        <button id="noBtn" class="btn" ontouchstart="moveNo()" onmouseover="moveNo()">NON 🙄</button>
+        <p id="noText" class="small"></p>
+      </div>
+    </section>
+
+    <section id="letter">
+      <div class="card">
+        <h2>💌 Petit message de ton coupain</h2>
+        <p>Bon... là c'est le vrai petit message ❤️</p>
+        <button class="btn primary" onclick="openLetter()">Ouvrir la lettre secrète 💌</button>
+        <div id="secretLetter">
+          <p>Coucou mon coeur,</p>
+          <p>Aujourd'hui ze voulais te souhaiter un zoyeux anniversaire, Te t'aime fort fort fort bébé ❤️❤️❤️</p>
+          <p>Ze suis croooooooop content d'être avec toi à Cluj pour ta journée ! ❤️❤️❤️</p>
+          <p>T'es une copine géniale, i love you so much ❤️❤️❤️</p>
+          <p>Bisouuuuuuuus ❤️❤️❤️</p>
+          <p>Ton coupain qui t'aime. ❤️❤️❤️</p>
+          <p>PS: J'espère que le côté informatique t'a plu 😆<br>Je m'entraine ❤️❤️❤️</p>
+        </div>
+        <button id="finalBtn" class="btn primary" style="display:none" onclick="go('final')">Dernière page ❤️</button>
+      </div>
+    </section>
+
+    <section id="final">
+      <div class="card">
+        <div class="hearts">❤️ ❤️ ❤️ ❤️ ❤️</div>
+        <h1>Zoyeux anniversaire mon ange</h1>
+        <p class="big">21 ans, et toujours la plus mignonne ❤️</p>
+        <p>Merci d'être toi. Merci d'être avec moi. Merci de rendre ma vie plus douce.</p>
+        <p>Ze t'aime fort fort fort bébé ❤️</p>
+        <p class="small">Et maintenant... restaurant, cadeau, bisous, et belle zournée ensemble 😘</p>
+        <button class="btn primary" onclick="confetti()">Encore des cœurs ❤️</button>
+      </div>
+    </section>
+  </div>
+
+<script>
+function go(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+  confetti();
+}
+const today = new Date(2026,5,14);
+function daysSince(y,m,d){
+  const start = new Date(y,m-1,d);
+  return Math.floor((today-start)/(1000*60*60*24));
+}
+document.getElementById('dMsg').textContent = daysSince(2022,10,3);
+document.getElementById('dCouple').textContent = daysSince(2023,1,3);
+document.getElementById('dNight').textContent = daysSince(2023,1,28);
+
+let q = 0;
+const boxes = [...document.querySelectorAll('.quizBox')];
+function updateBar(){document.getElementById('bar').style.width = ((q)/boxes.length*100)+'%';}
+function good(){
+  document.getElementById('feedback').textContent = "Bonne réponse mon ange ❤️";
+  document.getElementById('nextQuiz').style.display = 'inline-block';
+  confetti();
+}
+function bad(){
+  const msgs = ["Oups bébé 😆", "Presque, mais ze te pardonne ❤️", "Non non non, recommence 😘", "Erreur de zournée 😆"];
+  document.getElementById('feedback').textContent = msgs[Math.floor(Math.random()*msgs.length)];
+}
+function nextQ(){
+  boxes[q].classList.remove('active');
+  q++;
+  document.getElementById('feedback').textContent = "";
+  document.getElementById('nextQuiz').style.display = 'none';
+  if(q >= boxes.length){
+    go('mission');
+    q = boxes.length;
+    document.getElementById('bar').style.width = '100%';
+  }else{
+    boxes[q].classList.add('active');
+    updateBar();
+  }
+}
+updateBar();
+
+function checkMission(){
+  const all = [...document.querySelectorAll('input[type=checkbox]')].every(x=>x.checked);
+  if(all){
+    document.getElementById('missionText').textContent = "Mission validée, tu es officiellement trop forte ❤️";
+    document.getElementById('missionBtn').style.display = 'inline-block';
+    confetti();
+  }
+}
+function fakeGift(){
+  document.getElementById('fakeGiftText').innerHTML = "Erreur 404 😆<br>Le vrai cadeau arrive plus tard, bébé ❤️";
+  document.getElementById('afterGift').style.display = 'inline-block';
+  confetti();
+}
+let noCount=0;
+function moveNo(){
+  const btn = document.getElementById('noBtn');
+  noCount++;
+  const phrases = ["Non non non 😆", "Trop lente bébé ❤️", "Essaie encore 😘", "Impossible de dire non à ton coupain", "Bon allez clique sur oui ❤️"];
+  document.getElementById('noText').textContent = phrases[Math.min(noCount-1,phrases.length-1)];
+  btn.style.position='fixed';
+  btn.style.left = Math.max(8, Math.random()*74) + 'vw';
+  btn.style.top = Math.max(8, Math.random()*78) + 'vh';
+  btn.style.transform = `scale(${Math.max(.65,1-noCount*.05)}) rotate(${Math.random()*18-9}deg)`;
+  if(noCount>8){btn.style.display='none';}
+}
+function openLetter(){
+  document.getElementById('secretLetter').style.display='block';
+  document.getElementById('finalBtn').style.display='inline-block';
+  confetti();
+}
+function confetti(){
+  for(let i=0;i<24;i++){
+    const s=document.createElement('div');
+    s.className='sparkle';
+    s.textContent = ['❤️','🌹','💖','✨','🎂'][Math.floor(Math.random()*5)];
+    s.style.left = Math.random()*100+'vw';
+    s.style.top = (40+Math.random()*40)+'vh';
+    s.style.fontSize = (22+Math.random()*24)+'px';
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),900);
+  }
+}
+function createFalls(){
+  const chars=['❤️','🌹','💖','🌸','💕'];
+  for(let i=0;i<60;i++){
+    const f=document.createElement('div');
+    f.className='float';
+    f.textContent=chars[Math.floor(Math.random()*chars.length)];
+    f.style.left=Math.random()*100+'vw';
+    f.style.fontSize=(18+Math.random()*22)+'px';
+    f.style.animationDuration=(7+Math.random()*12)+'s';
+    f.style.animationDelay=(Math.random()*8)+'s';
+    document.body.appendChild(f);
+  }
+}
+createFalls();
+
+function toggleMusic(){
+  alert("Pour la chanson, mets simplement un fichier MP3 dans le dossier et remplace la source audio dans le HTML. Là j'ai mis le bouton clin d'œil à Through the Dark ❤️");
+}
+</script>
+</body>
+</html>
